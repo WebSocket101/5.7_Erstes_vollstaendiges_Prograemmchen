@@ -1,0 +1,32 @@
+<html>
+  <body>
+    <script type="text/javascript">
+    	var ws = new WebSocket('ws://echo.websocket.org/');
+
+		ws.onopen = function() {
+		console.log('WebSocket-Verbindung aufgebaut.');
+		ws.send('Hallo WebSocket Endpoint!');
+		console.log('Uebertragene Nachricht: Hallo WebSocket Endpoint!');
+		};
+
+		ws.onmessage = function(message) {
+		console.log('Der Server sagt: ' + message.data);
+		ws.close();
+		};
+	
+		ws.onclose = function(event) {
+		console.log('Der WebSocket wurde geschlossen oder konnte nicht aufgebaut werden.');
+		};
+	
+		ws.onerror = function(event) {
+		console.log('Mit dem WebSocket ist etwas schiefgelaufen!');
+		console.log('Fehlermeldung: ' + event.reason + ' (' + event.code + ')');
+		};
+    </script>
+  </body>
+</html>
+
+
+
+
+
